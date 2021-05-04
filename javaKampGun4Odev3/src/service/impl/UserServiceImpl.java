@@ -1,7 +1,7 @@
 package service.impl;
 
-import Util.MernisAuthentication;
-import Util.PasswordAuthentication;
+import util.MernisAuthentication;
+import util.PasswordAuthentication;
 import entity.User;
 import service.UserService;
 
@@ -9,14 +9,16 @@ import service.UserService;
 
 public class UserServiceImpl implements UserService {
     PasswordAuthentication passwordAuthentication;
+    MernisAuthentication mernisAuthentication;
 
-    public UserServiceImpl(PasswordAuthentication passwordAuthentication) {
+    public UserServiceImpl(PasswordAuthentication passwordAuthentication,MernisAuthentication mernisAuthentication) {
         this.passwordAuthentication = passwordAuthentication;
+        this.mernisAuthentication = mernisAuthentication;
     }
 
     @Override
-    public void add(User user) {
-    if(MernisAuthentication.checkCustomer(user)==true){
+    public void add(User user) throws Exception {
+    if(mernisAuthentication.checkCustomer(user)==true){
         System.out.println(user.getUname()+" Kullanıcı Eklendi");
     }else{
         throw new IllegalArgumentException("Kullanıcı Bilgileri Doğrulanamadı");

@@ -1,11 +1,20 @@
-package Util;
+package util;
 
 import entity.User;
+import mernis.HPQKPSPublicSoap;
 
 public class MernisAuthentication {
-    public static Boolean checkCustomer(User user){
-        System.out.println(user.getFirstName()+" Adlı kullanıcı kontrol ediliyor"); //static olmasa daha iyi olur sanki
-        //mernis'i buraya getirmem lazımdı normalde.
-        return true;
+
+    HPQKPSPublicSoap hpqkpsPublicSoap = new HPQKPSPublicSoap();
+
+    public Boolean checkCustomer(User user) throws Exception {
+        if (hpqkpsPublicSoap.TCKimlikNoDogrula(user.getNationalId(), user.getFirstName(), user.getLastName(), user.getBirthYear()) == true) {
+            System.out.println(user.getFirstName() + " " + user.getLastName() + " Kimlik bilgileri doğrulandı");
+            return true;
+        } else {
+            System.out.println("Kullanıcı Bilgileri hatalı");
+            return false;
+        }
+
     }
 }
