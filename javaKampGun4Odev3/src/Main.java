@@ -14,7 +14,7 @@ public class Main {
     public static void main(String[] args) throws Exception {
         Discount baharIndirimi = new Discount(1,"Bahar İndirimi","indirim",50);
         Product farCry = new Product(1,"Far Cry","Fps",150d,baharIndirimi);
-        User levent = new User(1,"llevents","Levent","Suncar",1986 ,50740843382L,"123456");
+        User levent = new User(1,"llevents","Levent","Suncar",1986 ,18645843333L,"123456");
         Order sales = new Order(1,farCry,levent);
         ProductServiceImpl productService = new ProductServiceImpl();
         DiscountServiceImpl discountService = new DiscountServiceImpl();
